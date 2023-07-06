@@ -6,14 +6,14 @@ const router = express.Router();
 const UserService = require('../app/UserService.js');
 
 // Rota para cadastrar usuário
-router.post('http://localhost:3000/api/users', (req, res) => {
+router.post('/users', (req, res) => {
   try {
     const { nome, idade, email, cep } = req.body;
 
     // Verifique se o CEP é do estado do Amazonas
-    if (!cep.startsWith('690')) {
-      return res.status(400).json({ error: 'O CEP deve ser do estado do Amazonas' });
-    }
+    // if (!cep.startsWith('690')) {
+    //   return res.status(400).json({ error: 'O CEP deve ser do estado do Amazonas' });
+    // }
 
     // Verifique se o usuário tem mais de 18 anos
     if (idade < 18) {
@@ -22,15 +22,16 @@ router.post('http://localhost:3000/api/users', (req, res) => {
 
     // Chame a função createUser do UserService para cadastrar o usuário
     const user = UserService.createUser(nome, idade, email, cep);
-
+    // let user = {nome, idade, email, cep}
     return res.status(201).json(user);
   } catch (error) {
+    console.log(error)
     return res.status(500).json({ error: 'Ocorreu um erro ao cadastrar o usuário' });
   }
 });
 
 // Rota para listar usuários
-router.get('http://localhost:3000/api/users', (req, res) => {
+router.get('/users', (req, res) => {
   try {
     // Chame a função listUsers do UserService para obter a lista de usuários
     const users = UserService.listUsers();
@@ -42,7 +43,7 @@ router.get('http://localhost:3000/api/users', (req, res) => {
 });
 
 // Rota para editar usuário
-router.put('http://localhost:3000/api/users:id', (req, res) => {
+router.put('/users/:id', (req, res) => {
   try {
     const userId = req.params.id;
     const { nome, idade, email, cep } = req.body;
@@ -53,7 +54,7 @@ router.put('http://localhost:3000/api/users:id', (req, res) => {
     }
 
     // Verifique se o usuário tem mais de 18 anos
-    if (idade < 18) {
+    if (idade <= 18) {
       return res.status(400).json({ error: 'Usuário deve ter mais de 18 anos' });
     }
 

@@ -10,24 +10,24 @@ const port = 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
-// Defina uma rota POST para cadastrar um usu�rio
-app.post('http://localhost:3000/api/users', (req, res) => {
-  // Acesse os dados enviados pelo frontend
-  const user = req.body;
+// // Defina uma rota POST para cadastrar um usu�rio
+// app.post('/api/users', (req, res) => {
+//   // Acesse os dados enviados pelo frontend
+//   const user = req.body;
 
-  // L�gica para armazenar os dados no banco de dados
+//   // L�gica para armazenar os dados no banco de dados
   
-  // Exemplo: use um ORM, como Sequelize, ou fa�a uma consulta direta ao banco de dados
+//   // Exemplo: use um ORM, como Sequelize, ou fa�a uma consulta direta ao banco de dados
 
-  // Retorne uma resposta ao frontend
-  res.json(user);
-});
+//   // Retorne uma resposta ao frontend
+//   res.json(user);
+// });
 
 // Configuração do caminho para o arquivo de banco de dados
 const dbPath = '../database.db'; // Caminho para o arquivo do banco de dados SQLite
 
 // Rotas para as operações de usuário
-app.use('/api/users', userController);
+app.use('/api', userController);
 
 // Inicia o servidor
 app.listen(port, () => {

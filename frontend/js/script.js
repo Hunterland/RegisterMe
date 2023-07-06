@@ -1,6 +1,6 @@
 // funçã£o para saber se o usuário jÃ¡ foi cadastrado.
 function isUserAlreadyRegistered(user) {
-  var table = document.getElementById("userTable");
+  var table = document.getElementById("userTableBody");
   var rows = table.getElementsByTagName("tr");
 
   for (var i = 1; i < rows.length; i++) {
