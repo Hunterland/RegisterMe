@@ -1,4 +1,5 @@
-// Função para abrir o modal de edição
+// Função para abrir o modal de edição //
+
 function openEditModal(user) {
   var modal = document.getElementById("editModal");
   var newNameInput = document.getElementById("newName");
@@ -120,21 +121,21 @@ function removeUser(user) {
 
 /// Função para remover um usuário
 function deleteUserFromList(user) {
-  // Encontre a linha correspondente ao usuário na tabela e remova-a
+  // Encontrar a linha correspondente ao usuário na tabela para a remoção
   var table = document.getElementById("userTable");
   var rows = table.getElementsByTagName("tr");
 
   for (var i = 1; i < rows.length; i++) {
     var nameCell = rows[i].getElementsByTagName("td")[0];
     if (nameCell.textContent === user.nome) {
-      // Corrigido para user.nome
       table.deleteRow(i);
       break;
     }
   }
 }
 
-// Função para Deletar o usuário do banco de dados
+// Função para Deletar o usuário do banco de dados //
+
 function deleteUserFromDatabase(user) {
   // Chama a rota DELETE do backend para remover o usuário do banco de dados
   fetch(`http://localhost:3000/api/users/${user.id}`, {
@@ -188,7 +189,8 @@ function addUserToList(user) {
   });
 }
 
-// Função para listar os usuários
+// Função para listar os usuários //
+
 function listUsers() {
   fetch("http://localhost:3000/api/users")
     .then((response) => response.json())

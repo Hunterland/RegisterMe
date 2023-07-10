@@ -1,3 +1,5 @@
+// Definindo as rotas do usuÃ¡rio //
+
 const express = require("express");
 const router = express.Router();
 const UserService = require("../app/UserService");
@@ -5,7 +7,6 @@ const UserService = require("../app/UserService");
 router.post("/users", async (req, res) => {
   try {
     const { nome, idade, email, cep } = req.body;
-
     if (!cep.startsWith("690")) {
       return res
         .status(400)
@@ -15,7 +16,7 @@ router.post("/users", async (req, res) => {
     if (idade <= 18) {
       return res
         .status(400)
-        .json({ error: "Usuário deve ter mais de 18 anos" });
+        .json({ error: "UsuÃ¡rio deve ter mais de 18 anos" });
     }
 
     const user = await UserService.createUser(nome, idade, email, cep);
@@ -25,7 +26,7 @@ router.post("/users", async (req, res) => {
     console.error(error);
     return res
       .status(500)
-      .json({ error: "Ocorreu um erro ao cadastrar o usuário" });
+      .json({ error: "Ocorreu um erro ao cadastrar o usuï¿½rio" });
   }
 });
 
@@ -38,7 +39,7 @@ router.get("/users", async (req, res) => {
     console.error(error);
     return res
       .status(500)
-      .json({ error: "Ocorreu um erro ao listar os usuários" });
+      .json({ error: "Ocorreu um erro ao listar os usuï¿½rios" });
   }
 });
 
@@ -56,7 +57,7 @@ router.put("/users/:id", async (req, res) => {
     if (idade <= 18) {
       return res
         .status(400)
-        .json({ error: "Usuário deve ter mais de 18 anos" });
+        .json({ error: "Usuï¿½rio deve ter mais de 18 anos" });
     }
 
     const user = await UserService.editUser(userId, nome, idade, email, cep);
@@ -66,7 +67,7 @@ router.put("/users/:id", async (req, res) => {
     console.error(error);
     return res
       .status(500)
-      .json({ error: "Ocorreu um erro ao editar o usuário" });
+      .json({ error: "Ocorreu um erro ao editar o usuï¿½rio" });
   }
 });
 
@@ -76,12 +77,12 @@ router.delete("/users/:id", async (req, res) => {
 
     await UserService.deleteUser(userId);
 
-    return res.status(200).json({ message: "Usuário removido com sucesso" });
+    return res.status(200).json({ message: "Usuï¿½rio removido com sucesso" });
   } catch (error) {
     console.error(error);
     return res
       .status(500)
-      .json({ error: "Ocorreu um erro ao remover o usuário" });
+      .json({ error: "Ocorreu um erro ao remover o usuï¿½rio" });
   }
 });
 

@@ -1,3 +1,5 @@
+// arquivo de inicializa√ß√£o do servidor //
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const userController = require('./presentation/UserController');
@@ -10,11 +12,11 @@ const port = 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
- // Caminho para o arquivo do banco de dados SQLite
+// Caminho para o arquivo do banco de dados SQLite
 // const dbPath = '../database.db';
 
 
-// Rotas para as operaÁıes de usu·rios
+// Rotas para as opera√ß√µes de usu√°rios
 app.use('/api', userController);
 
 // Inicia o servidor

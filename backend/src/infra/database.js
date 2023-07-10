@@ -1,3 +1,5 @@
+// Interação com o banco de dados sqlite //
+
 const sqlite3 = require("sqlite3").verbose();
 
 class Database {

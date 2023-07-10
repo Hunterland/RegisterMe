@@ -1,18 +1,16 @@
-//  camada de domínio (User.js) que define a entidade de usuário.
+// Define a entidade de usuï¿½rio //
 
 class User {
-    constructor(nome, idade, email, cep) {
-      this.nome = nome;
-      this.idade = idade;
-      this.email = email;
-      this.cep = cep;
-    }
+  constructor(nome, idade, email, cep) {
+    this.nome = nome;
+    this.idade = idade;
+    this.email = email;
+    this.cep = cep;
   }
-  
-  // Exporta a classe User
-  module.exports = User;
-  
+}
 
-// A classe 'User' representa a entidade de usuário.
+module.exports = User;
+
+// A classe 'User' representa a entidade de usuÃ¡rio.
 // Ela possui um construtor que define os atributos nome, idade,
-// email e cep com base nos valores passados ao criar uma instância do objeto.
+// email e cep com base nos valores passados ao criar uma instÃ¢ncia do objeto.
