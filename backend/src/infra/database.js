@@ -1,9 +1,9 @@
-const sqlite3 = require('sqlite3').verbose();
+const sqlite3 = require("sqlite3").verbose();
 
 class Database {
   constructor() {
-    this.db = new sqlite3.Database('./database.db'); // Caminho para o arquivo do banco de dados SQLite
-    this.createTable(); // Cria a tabela de usuários ao instanciar a classe
+    this.db = new sqlite3.Database("database.db");
+    this.createTable();
   }
 
   createTable() {
@@ -28,13 +28,19 @@ class Database {
 
     const { nome, idade, email, cep } = user;
 
-    this.db.run(query, [nome, idade, email, cep]);
-
-    return this.db.lastID;
+    return new Promise((resolve, reject) => {
+      this.db.run(query, [nome, idade, email, cep], function (err) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(this.lastID);
+        }
+      });
+    });
   }
 
   getAllUsers() {
-    const query = 'SELECT * FROM users';
+    const query = "SELECT * FROM users";
 
     return new Promise((resolve, reject) => {
       this.db.all(query, (err, rows) => {
@@ -48,7 +54,7 @@ class Database {
   }
 
   getUserById(id) {
-    const query = 'SELECT * FROM users WHERE id = ?';
+    const query = "SELECT * FROM users WHERE id = ?";
 
     return new Promise((resolve, reject) => {
       this.db.get(query, [id], (err, row) => {
@@ -61,7 +67,7 @@ class Database {
     });
   }
 
-  updateUser(user) {
+  updateUserInDatabase(user) {
     const { id, nome, idade, email, cep } = user;
     const query = `
       UPDATE users
@@ -71,15 +77,20 @@ class Database {
 
     this.db.run(query, [nome, idade, email, cep, id]);
   }
+
+  deleteUser(userId) {
+    const query = "DELETE FROM users WHERE id = ?";
+
+    return new Promise((resolve, reject) => {
+      this.db.run(query, [userId], function (err) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
+  }
 }
 
-// Exporte a classe Database
 module.exports = new Database();
-
-
-//  A classec 'Database' é responsável por configurar e gerenciar a conexão com o banco de dados SQLite.
-//  Ela possui métodos para criar a tabela de usuários,
-//  inserir um novo usuário,
-//  obter todos os usuários e atualizar um usuário existente.
-
-// conexão padrão com ':memory:'

@@ -9,9 +9,10 @@ class User {
     }
   }
   
-  // Exporte a classe User
+  // Exporta a classe User
   module.exports = User;
   
 
 // A classe 'User' representa a entidade de usuário.
-// Ela possui um construtor que define os atributos nome, idade, email e cep com base nos valores passados ao criar uma instância do objeto.
+// Ela possui um construtor que define os atributos nome, idade,
+// email e cep com base nos valores passados ao criar uma instância do objeto.

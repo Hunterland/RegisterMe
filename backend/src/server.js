@@ -10,23 +10,11 @@ const port = 3000;
 app.use(bodyParser.json());
 app.use(cors());
 
-// // Defina uma rota POST para cadastrar um usuï¿½rio
-// app.post('/api/users', (req, res) => {
-//   // Acesse os dados enviados pelo frontend
-//   const user = req.body;
+ // Caminho para o arquivo do banco de dados SQLite
+// const dbPath = '../database.db';
 
-//   // Lï¿½gica para armazenar os dados no banco de dados
-  
-//   // Exemplo: use um ORM, como Sequelize, ou faï¿½a uma consulta direta ao banco de dados
 
-//   // Retorne uma resposta ao frontend
-//   res.json(user);
-// });
-
-// ConfiguraÃ§Ã£o do caminho para o arquivo de banco de dados
-const dbPath = '../database.db'; // Caminho para o arquivo do banco de dados SQLite
-
-// Rotas para as operaÃ§Ãµes de usuÃ¡rio
+// Rotas para as operações de usuários
 app.use('/api', userController);
 
 // Inicia o servidor
