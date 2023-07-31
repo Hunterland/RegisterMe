@@ -16,7 +16,7 @@ Aqui estão as informações relevantes para configurar e executar o projeto:
     
 2.  Acesse o diretório do projeto:
     
-    `cd <diretorio-do-projeto>` 
+    `cd RegisterMe` 
     
 3.  Instale as dependências do projeto utilizando o npm:
     
