@@ -12,7 +12,7 @@ Aqui estão as informações relevantes para configurar e executar o projeto:
 
 1.  Clone o repositório do projeto para o seu ambiente local:
     
-    `git clone <URL_DO_REPOSITORIO>` 
+    `git clone https://github.com/Hunterland/RegisterMe.git` 
     
 2.  Acesse o diretório do projeto:
     
