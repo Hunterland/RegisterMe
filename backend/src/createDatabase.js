@@ -24,6 +24,6 @@ db.run(createTableQuery, (err) => {
     console.log('Tabela de usuários criada com sucesso.');
   }
 
-  // Fechar a conexão com o banco de dados
+  // Fecha a conexão com o banco de dados
   db.close();
 });

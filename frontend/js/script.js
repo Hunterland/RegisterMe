@@ -26,6 +26,7 @@ function openEditModal(user) {
       var newCep = newCepInput.value;
 
       if (newName && newIdade && newEmail && newCep) {
+        
         // Atualiza os dados do usuário
         user.nome = newName;
         user.idade = newIdade;
@@ -35,23 +36,23 @@ function openEditModal(user) {
         // Atualiza os dados do usuário no banco de dados
         updateUserInDatabase(user);
 
-        // Encontra a linha correspondente ao usuário na tabela e atualiza as células
-        var rows = document.querySelectorAll("#userTable tbody tr");
+        // // Encontra a linha correspondente ao usuário na tabela e atualiza as células
+        // var rows = document.querySelectorAll("#userTable tbody tr");
 
-        for (var i = 0; i < rows.length; i++) {
-          var nameCell = rows[i].querySelector("td:first-child");
-          if (nameCell.textContent === user.nome) {
-            var idadeCell = rows[i].querySelector("td:nth-child(2)");
-            var emailCell = rows[i].querySelector("td:nth-child(3)");
-            var cepCell = rows[i].querySelector("td:nth-child(4)");
+        // for (var i = 0; i < rows.length; i++) {
+        //   var nameCell = rows[i].querySelector("td:first-child");
+        //   if (nameCell.textContent === user.nome) {
+        //     var idadeCell = rows[i].querySelector("td:nth-child(2)");
+        //     var emailCell = rows[i].querySelector("td:nth-child(3)");
+        //     var cepCell = rows[i].querySelector("td:nth-child(4)");
 
-            nameCell.textContent = newName;
-            idadeCell.textContent = newIdade;
-            emailCell.textContent = newEmail;
-            cepCell.textContent = newCep;
-            break;
-          }
-        }
+        //     nameCell.textContent = newName;
+        //     idadeCell.textContent = newIdade;
+        //     emailCell.textContent = newEmail;
+        //     cepCell.textContent = newCep;
+        //     break;
+        //   }
+        // }
 
         // Fecha o modal
         modal.style.display = "none";
@@ -239,7 +240,12 @@ document
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Usuário cadastrado com sucesso:", data);
+        if ("error" in data) {
+          alert(data.error);
+          return;
+        }
+
+        alert("Usuário cadastrado com sucesso!");
 
         // Adicionar o usuário à lista
         addUserToList(data);
