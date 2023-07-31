@@ -1,4 +1,3 @@
-
 ## Setup para Execução do Projeto
 
 Aqui estão as informações relevantes para configurar e executar o projeto:
