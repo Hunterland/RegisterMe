@@ -1,9 +1,10 @@
-// Definindo as rotas do usu�rio //
+// Definindo as rotas do usuário //
 
 const express = require("express");
 const router = express.Router();
 const UserService = require("../app/UserService");
 
+//função que verifica se uma determinada string contém apenas caracteres numéricos. 
 function isNumeric(str) {
   var er = /^[0-9]+$/;
   return er.test(str);kom
@@ -13,23 +14,23 @@ router.post("/users", async (req, res) => {
   try {
     const { nome, idade, email, cep } = req.body;
 
-    // Verifica se a formata��o do CEP est� correta
+    // Verifica se a formatação do CEP está correta
     if (cep.length !== 8 || !isNumeric(cep)) {
       return res.status(400).json({ error: "CEP inválido" });
     }
 
-    // Realiza a requisi��o para a API do VIACEP
+    // Realiza a requisição para a API do VIACEP
     const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
 
     // Transforma o JSON da resposta da API para um objeto JS
     const data = await response.json();
 
-    // Verifica se o CEP � inv�lido, baseado no retorno da API
+    // Verifica se o CEP é inválido, baseado no retorno da API
     if ("error" in data) {
-      return res.status(400).json({ error: "CEP inv�lido" });
+      return res.status(400).json({ error: "CEP inválido" });
     }
 
-    // Verifica se o CEP � do Amazonas, baseado no retorno da API
+    // Verifica se o CEP é do Amazonas, baseado no retorno da API
     if (data.uf !== "AM") {
       return res
         .status(400)
@@ -54,7 +55,7 @@ router.post("/users", async (req, res) => {
 });
 
 
-// listando os usu�rios
+// listando os usuários
 router.get("/users", async (req, res) => {
   try {
     const users = await UserService.listUsers();
@@ -82,7 +83,7 @@ router.put("/users/:id", async (req, res) => {
     if (idade < 18) {
       return res
         .status(400)
-        .json({ error: "Usu�rio deve ter pelo menos 18 anos" });
+        .json({ error: "Usuário deve ter pelo menos 18 anos" });
     }
 
     const user = await UserService.editUser(userId, nome, idade, email, cep);

@@ -1,4 +1,4 @@
-// Define a entidade de usu�rio //
+// Define a entidade de usuário //
 
 class User {
   constructor(nome, idade, email, cep) {
@@ -11,6 +11,6 @@ class User {
 
 module.exports = User;
 
-// A classe 'User' representa a entidade de usu�rio.
+// A classe 'User' representa a entidade de usuário.
 // Ela possui um construtor que define os atributos nome, idade,
 // email e cep com base nos valores passados ao criar uma instância do objeto.
